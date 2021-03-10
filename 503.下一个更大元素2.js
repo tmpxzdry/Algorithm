@@ -19,4 +19,22 @@ var nextGreaterElements = function (nums) {
     }
     return res;
 };
-console.log(nextGreaterElements([1, 2, 1]))
+
+
+var nextGreaterElements1 = function (nums) {
+    let n = nums.length;
+    let stack = [];
+    let res = new Array(n).fill(-1)
+
+    for (let i = 0; i < 2 * n - 1; i++) {
+        while ((nums[i % n] > nums[stack[stack.length - 1]]) && stack.length !== 0) {
+            console.log(stack)
+            res[stack[stack.length - 1]] = nums[i % n]
+            stack.pop();
+        }
+        stack.push(i % n)
+    }
+    return res;
+};
+
+console.log(nextGreaterElements1([1, 2, 1]))
